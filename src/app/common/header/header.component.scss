@@ -1,0 +1,14 @@
+.logo {
+  width : 70px;
+}
+.nav-item {
+    font-weight: bold;
+    color : grey;
+}
+.nav-item:hover {
+    text-decoration: none;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+.nav-item.active {
+    color : #8CC63F;
+}

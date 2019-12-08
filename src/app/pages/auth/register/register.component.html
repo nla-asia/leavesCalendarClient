@@ -1,0 +1,43 @@
+<div class="container">
+        <form class="form-signup" #signupForm="ngForm" (submit)="onFormSubmit($event, signupForm)">
+                <div class="text-center mb-4">
+                  <h1 class="h3 mb-3 font-weight-normal">Employee Registration</h1>
+                  <p>
+        
+                  </p>
+                </div>
+              
+                <div class="form-group">
+                        <label for="inputName">Name </label>
+                         <input type="text" id="inputName" class="form-control"  [(ngModel)]="employeeInfo.name" name="name" #name="ngModel"  placeholder="Name " required >
+                         <div [hidden]="name.valid || name.pristine" class="form-error-message">Name is required!</div>
+                 </div>
+
+                 <div class="form-group">
+                        <label for="inputDesignation">Designation </label>
+                         <input type="text" id="inputDesignation" class="form-control" [(ngModel)]="employeeInfo.designation" name="designation" #designation="ngModel" placeholder="Designation " required >
+                         <div [hidden]="designation.valid || designation.pristine" class="form-error-message">Designation is required!</div>
+                 </div>
+
+                <div class="form-group">
+                 <label for="inputEmail">Email </label>
+                  <input type="email" id="inputEmail" class="form-control" [(ngModel)]="employeeInfo.email" name="email" #email="ngModel" placeholder="Email " required >
+                  <div [hidden]="email.valid || email.pristine" class="form-error-message">Valid email is required!</div>
+                </div>
+
+                <div class="form-group">
+                        <label for="inputPhone">Phone </label>
+                         <input type="text" id="inputPhone" class="form-control" [(ngModel)]="employeeInfo.phone" name="phone" #phone="ngModel" placeholder="Phone " required >
+                         <div [hidden]="phone.valid || phone.pristine" class="form-error-message">Valid phone is required!</div>
+                </div>
+              
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" [(ngModel)]="employeeInfo.password" name="password" #password="ngModel" placeholder="Password" required>
+                    <div [hidden]="password.valid || password.pristine" class="form-error-message">Password is required!</div>
+                </div>
+              
+                <button [disabled]="!signupForm.form.valid" class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+                <p>Already  registered as employee ? Login <a routerLink="/login" >Here</a></p>
+        </form>
+</div>

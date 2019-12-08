@@ -1,0 +1,33 @@
+<div class="container-fluid">
+        <div class="search-form py-3">
+            <button   (click)="openNewLeaveType($event)" class="btn btn-success btn-sm">Add New Leave Type</button>
+        </div>
+        <div class="content-section">
+                <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">CreatedAt</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                           <td class="text-center" colspan="4">No Data Available</td>
+                          </tr>
+                          <tr *ngFor="let lt of leaveTypes">
+                              <td scope="col">{{ lt.id }}</td>
+                              <td scope="col">{{ lt.name }}</td>
+                              <td scope="col">{{ lt.description }}</td>
+                              <td scope="col">{{ lt.created_at }}</td>
+                              <td scope="col">
+                                
+                              </td>
+                            </tr>
+                        </tbody>
+                </table>
+       </div><!-- end of .content-section -->
+
+</div>

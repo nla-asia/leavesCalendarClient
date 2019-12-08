@@ -1,0 +1,33 @@
+<div class="container-fluid">
+        <div class="search-form py-3">
+            <button   (click)="openNewHoliday($event)" class="btn btn-success btn-sm">Add New Holiday</button>
+        </div>
+        <div class="content-section">
+                <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">CreatedAt</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngIf="!hasHolidays">
+                           <td class="text-center" colspan="4">No Data Available</td>
+                          </tr>
+                          <tr *ngFor="let holiday of holidays">
+                              <td scope="col">{{ holiday.id }}</td>
+                              <td scope="col">{{ holiday.title }}</td>
+                              <td scope="col">{{ holiday.start_date }}</td>
+                              <td scope="col">{{ holiday.created_at }}</td>
+                              <td scope="col">
+
+                              </td>
+                            </tr>
+                        </tbody>
+                </table>
+       </div><!-- end of .content-section -->
+
+</div>
