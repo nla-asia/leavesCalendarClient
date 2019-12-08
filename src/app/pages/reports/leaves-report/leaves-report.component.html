@@ -3,19 +3,24 @@
             <form action="">
                 <div class="row">
                     <div class="col-md-3">
-                         <label for="">Date</label>
-                        <input type="text" class="form-control" placeholder="Search something..." />
+                         <label for="">Date (From) </label>
+                        <input type="text" name="start_date" [(ngModel)]="query.start_date"  ngbDatepicker #dps="ngbDatepicker"  (click)="dps.toggle()"  class="form-control" placeholder="yyyy-mm-dd" />
                     </div><!-- end of .col-md-3 -->
                     <div class="col-md-3">
-                           <label for="">Employee</label>
-                           <select name="s" id="s" class="form-control">
-                               <option value="">Option 1</option>
+                            <label for="">Date (To) </label>
+                           <input type="text" name="end_date" [(ngModel)]="query.end_date" ngbDatepicker #dpe="ngbDatepicker"  (click)="dpe.toggle()"  class="form-control" placeholder="yyyy-mm-dd" />
+                       </div><!-- end of .col-md-3 --> 
+                    <div class="col-md-3">
+                           <label for="employee_id">Employee</label>
+                           <select name="employee_id" id="employee_id" [(ngModel)]="query.employee_id"  class="form-control">
+                               <option value="">All</option>
+                               <option *ngFor="let em of employees" value="{{ em.id }}">{{ em.name }}</option>
                            </select>
                    </div><!-- end of .col-md-3 -->
                    <div class="col-md-6">
                        <label for="">&nbsp;</label>
                        <div>
-                       <button class="btn btn-success mx-1">Generate Report</button>
+                       <button (click)="fetchLeaves()" class="btn btn-success mx-1">Generate Report</button>
                        <button class="btn btn-success mx-1">Download in Excel</button>
                        <button class="btn btn-success mx-1">Download in PDF</button>
                        </div>
@@ -31,16 +36,25 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Employee</th>
                                     <th scope="col">Leave Type</th>
-                                    <th scope="col">Date</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">End Date</th>
                                     <th scope="col">Reason</th>
-                                    <th scope="col">Attachment</th>
-                                    <th scope="col">Action</th>
                                  </tr>
                                </thead>
                                <tbody>
-                                 <tr>
+                                 <tr *ngIf="!hasLeaves">
                                   <td class="text-center" colspan="7">No Data Available</td>
                                  </tr>
+
+                                 <tr *ngFor="let leave of leaves">
+                                        <td scope="col">{{ leave.id }}</td>
+                                        <td scope="col">{{ leave.employee_name }}</td>
+                                        <td scope="col">{{ leave.leave_name }}</td>
+                                        <td scope="col">{{ leave.start_date }}</td>
+                                        <td scope="col">{{ leave.end_date }}</td>
+                                        <td scope="col">{{ leave.reason }}</td>
+                                </tr>
+
                                </tbody>
                        </table>
        </div><!-- end of .content-section -->

@@ -8,22 +8,24 @@
                           <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Total Days Per Year</th>
                             <th scope="col">Description</th>
                             <th scope="col">CreatedAt</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                           <td class="text-center" colspan="4">No Data Available</td>
+                          <tr *ngIf="!hasLeaveTypes">
+                           <td class="text-center" colspan="6">No Data Available</td>
                           </tr>
                           <tr *ngFor="let lt of leaveTypes">
                               <td scope="col">{{ lt.id }}</td>
                               <td scope="col">{{ lt.name }}</td>
+                              <td scope="col">{{ lt.days_per_year }}</td>
                               <td scope="col">{{ lt.description }}</td>
                               <td scope="col">{{ lt.created_at }}</td>
                               <td scope="col">
-                                
+                                <button (click)="onDelete(lt.id)" class="btn btn-danger btn-sm">Delete</button>
                               </td>
                             </tr>
                         </tbody>

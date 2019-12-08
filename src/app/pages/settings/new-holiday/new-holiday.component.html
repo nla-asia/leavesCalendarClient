@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form action="" method="POST" #newHolidayForm="ngForm" (submit)="onFormSubmit($event, newHolidayForm)">
+    <form method="POST" #newHolidayForm="ngForm" (submit)="onFormSubmit($event, newHolidayForm)">
     <div class="modal-header">
         <h4 class="modal-title">New Holiday</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -7,19 +7,21 @@
         </button>
       </div>
       <div class="modal-body">
-        
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="holiday.name" required />
+                    <input type="text" class="form-control" name="title" [(ngModel)]="holiday.title" required />
                 </div>
                 <div class="form-group">
-                        <label for="">Date</label> 
-                        <input type="text" class="form-control"  name="date" [(ngModel)]="holiday.date" ngbDatepicker #dp="ngbDatepicker"  (click)="dp.toggle()"  placeholder="yyyy-mm-dd"  required />
+                    <label for="">Start Date</label> 
+                    <input type="text" class="form-control"  name="date" [(ngModel)]="holiday.start_date" ngbDatepicker #dps="ngbDatepicker"  (click)="dps.toggle()"  placeholder="yyyy-mm-dd"  required />
                 </div>
-          
+                <div class="form-group">
+                    <label for="">End Date</label> 
+                    <input type="text" class="form-control"  name="date" [(ngModel)]="holiday.end_date" ngbDatepicker #dpe="ngbDatepicker"  (click)="dpe.toggle()"  placeholder="yyyy-mm-dd"  required />
+                </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Save</button>
+        <button  [disabled]="!newHolidayForm.form.valid" type="submit" class="btn btn-success">Save</button>
         <button type="button" class="btn btn-default" (click)="activeModal.close('Cancel click')">Cancel</button>
     </div>
 </form>

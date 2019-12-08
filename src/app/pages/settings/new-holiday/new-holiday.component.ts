@@ -11,8 +11,9 @@ import { SettingsService } from 'src/app/services/settings.service';
 export class NewHolidayComponent implements OnInit {
   @Input() name:any;
   public holiday:any = {
-    name : "",
-    date  : ""
+    title : "",
+    start_date  : "",
+    end_date : ""
   };
   constructor(private activeModal : NgbActiveModal,
     private settingService : SettingsService) { 
@@ -24,9 +25,16 @@ export class NewHolidayComponent implements OnInit {
 
   onFormSubmit(e, form){
   console.log(this.holiday);
+   let {start_date, end_date} = this.holiday;
+   this.holiday.start_date = start_date.year+"-"+start_date.month+"-"+start_date.day;
+   this.holiday.end_date = end_date.year+"-"+end_date.month+"-"+end_date.day;
+  
   this.settingService.addHoliday(this.holiday).subscribe(
     (res:any)=>{
       this.activeModal.close();
+    },
+    (err:any)=>{
+      console.log(err);
     }
   );
   }

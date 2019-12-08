@@ -19,7 +19,6 @@ import { LeavesReportComponent } from './pages/reports/leaves-report/leaves-repo
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { ProfileComponent } from './pages/auth/profile/profile.component';
 import { NewHolidayComponent } from './pages/settings/new-holiday/new-holiday.component';
 import { NewLeaveTypeComponent } from './pages/settings/new-leave-type/new-leave-type.component';
 import { NewLeaveComponent } from './pages/calendar/new-leave/new-leave.component';
@@ -38,7 +37,6 @@ import { NewLeaveComponent } from './pages/calendar/new-leave/new-leave.componen
     NotFoundComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent,
     NewHolidayComponent,
     NewLeaveTypeComponent,
     NewLeaveComponent

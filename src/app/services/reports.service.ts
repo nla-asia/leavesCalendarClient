@@ -22,7 +22,7 @@ export class ReportsService {
     return str.join("&");
   }
 
-  getLeaves(query:any={}){
+  getLeaves(query=null){
     let qstr = "?";
     if(query){
         qstr += this.serialize(query);

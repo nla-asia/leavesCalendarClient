@@ -53,7 +53,7 @@ export class SettingsService {
      return this.http.delete(env.apiEnd+"leave_types/"+leaveTypeID, this.auth.getAuthHeader());
    }
 
-
+ 
 
 
 }

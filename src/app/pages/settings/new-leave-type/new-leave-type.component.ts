@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-new-leave-type',
@@ -10,17 +11,29 @@ export class NewLeaveTypeComponent implements OnInit {
   @Input() name:any;
   public leaveType:any = {
     name : "",
-    description  : ""
+    description  : "",
+    days_per_year : ""
   };
-  constructor(private activeModal : NgbActiveModal) { 
-
+  constructor(private activeModal : NgbActiveModal,
+    private settingsService : SettingsService) { 
+   
   }
 
   ngOnInit() {
+    
   }
 
-  onFormSubmit(e){
+  onFormSubmit(e, form){
     console.log(this.leaveType);
+    this.settingsService.addleaveType(this.leaveType).subscribe(
+      (res:any)=>{
+      this.activeModal.close();
+      },
+      (err:any)=>{
+        console.log(err);
+      }
+    );
+
   }
 
 }

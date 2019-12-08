@@ -1,5 +1,5 @@
 <div class="container-fluid">
-        <form action="" method="POST" (submit)="onFormSubmit($event)">
+        <form action="" method="POST" #newLeaveTypeForm="ngForm" (submit)="onFormSubmit($event, newLeaveTypeForm)">
         <div class="modal-header">
             <h4 class="modal-title">New Leave Type</h4>
             <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -10,16 +10,23 @@
             
                     <div class="form-group">
                         <label for="">Name</label>
-                        <input type="text" class="form-control" name="name" [(ngModel)]="leaveType.name" required />
+                        <input type="text" class="form-control" name="name" [(ngModel)]="leaveType.name" #name="ngModel" required />
+                        <div [hidden]="name.valid || name.pristine" class="form-error-message">Name is required!</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Days Per Year</label>
+                        <input type="number" class="form-control" name="days_per_year" [(ngModel)]="leaveType.days_per_year" #days_per_year="ngModel" required />
+                        <div [hidden]="days_per_year.valid || days_per_year.pristine" class="form-error-message">Days per Year is required!</div>
                     </div>
                     <div class="form-group">
-                            <label for="">Description</label> 
-                             <textarea name="description" [(ngModel)]="leaveType.description" class="form-control" rows="2"></textarea>
-                    </div>
+                        <label for="">Description(optional)</label> 
+                         <textarea name="description" [(ngModel)]="leaveType.description" class="form-control" rows="2"></textarea>
+                </div>
               
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Save</button>
+            <button  [disabled]="!newLeaveTypeForm.form.valid" type="submit" class="btn btn-success">Save</button>
             <button type="button" class="btn btn-default" (click)="activeModal.close('Cancel click')">Cancel</button>
         </div>
     </form>

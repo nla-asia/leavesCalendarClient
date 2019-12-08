@@ -17,10 +17,16 @@ export class HolidaysComponent implements OnInit {
   }
 
   ngOnInit() {
+   this.fetchHolidays();
+  }
+
+  fetchHolidays(){
     this.settingsService.getHolidays().subscribe(
       (res:any)=>{
-        if(res.data){
+        if(res.data && res.data.length >0){
           this.holidays = res.data;
+        }else{
+          this.hasHolidays = false;
         }
       },
       (err:any)=>{
@@ -30,10 +36,21 @@ export class HolidaysComponent implements OnInit {
   }
 
   openNewHoliday(e){
-
     const modalRef = this.modalService.open(NewHolidayComponent, {backdrop:"static"});
     modalRef.componentInstance.name = 'World';
 
+  }
+
+  onDeleteHoliday(id){
+    var yes = confirm("Are you sure to remove this holiday?");
+    if(!yes){
+      return;
+    }
+    this.settingsService.removeHoliday(id).subscribe((res:any)=>{
+    this.fetchHolidays();
+    },(err:any)=>{
+      console.log(err);
+    });
   }
  
 }

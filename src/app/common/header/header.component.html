@@ -7,7 +7,7 @@
         </nav>
          
         <nav class="mr-md-1" *ngIf="isLoggedIn">
-              <a  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  class="py-2 px-3  nav-item" routerLink="/profile" >Howdy, Nay Lin!</a>
+              <a  class="py-2 px-3  nav-item" >Howdy, {{ loggedInUser.name }}!</a>
               <a  (click)="onLogoutClick($event)"  class="py-2 px-3  nav-item" >Logout</a>
         </nav>
         <nav class="mr-md-1" *ngIf="!isLoggedIn">

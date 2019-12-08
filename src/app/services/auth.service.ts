@@ -82,5 +82,9 @@ export class AuthService {
     return this.http.get(env.apiEnd+"employees/me", this.getAuthHeader());
   }
 
+  getAllEmployees(){
+    return this.http.get(env.apiEnd+"employees", this.getAuthHeader());
+  }
+
 
 }
