@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarService } from 'src/app/services/calendar.service';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-new-leave',
@@ -14,19 +15,42 @@ export class NewLeaveComponent implements OnInit {
     end_date : "",
     reason : ""
   }
-  @Input() name:any;
+  @Input() calendarData:any = {};
+  public leaveTypes:any = [];
   constructor(private activeModal : NgbActiveModal,
-    private calendarService : CalendarService) {
-
+    private calendarService : CalendarService,
+    private settingsService : SettingsService) {
+    
    }
 
   ngOnInit() {
 
+    this.leave.start_date = this.calendarData.startStr;
+    this.leave.end_date  = this.calendarData.endStr;
+
+    this.settingsService.getleaveTypes().subscribe(
+      (res:any)=>{
+        if(res.data){
+          this.leaveTypes = res.data;
+        }
+      }
+    );
+
+  }
+
+  ngAfterViewInit(){
+    console.log(this.calendarData);
   }
 
   onFormSubmit(e, form){
+
+    // let {start_date, end_date} = this.leave;
+    // this.leave.start_date = start_date.year+"-"+start_date.month+"-"+start_date.day;
+    // this.leave.end_date = end_date.year+"-"+end_date.month+"-"+end_date.day;
+
     this.calendarService.submitNewLeave(this.leave).subscribe((res:any)=>{
       this.activeModal.close();
+      window.location.reload();
     });
   }
 

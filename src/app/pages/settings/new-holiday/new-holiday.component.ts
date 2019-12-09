@@ -32,6 +32,7 @@ export class NewHolidayComponent implements OnInit {
   this.settingService.addHoliday(this.holiday).subscribe(
     (res:any)=>{
       this.activeModal.close();
+      window.location.reload();
     },
     (err:any)=>{
       console.log(err);

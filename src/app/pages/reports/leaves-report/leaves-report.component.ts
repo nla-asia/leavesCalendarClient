@@ -39,8 +39,8 @@ export class LeavesReportComponent implements OnInit {
 
   fetchLeaves(){
     let {start_date, end_date} = this.query;
-    this.query.start_date = start_date.year+"-"+start_date.month+"-"+start_date.day;
-    this.query.end_date = end_date.year+"-"+end_date.month+"-"+end_date.day;
+    this.query.start_date =  start_date ? start_date.year+"-"+start_date.month+"-"+start_date.day :  "";
+    this.query.end_date =  end_date ? end_date.year+"-"+end_date.month+"-"+end_date.day : "";
     this.reportsService.getLeaves(this.query).subscribe(
       (res:any)=>{
         console.log(res);
@@ -52,6 +52,20 @@ export class LeavesReportComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  downloadExcel(){
+    let {start_date, end_date} = this.query;
+    this.query.start_date = start_date ? start_date.year+"-"+start_date.month+"-"+start_date.day : "";
+    this.query.end_date = end_date ? end_date.year+"-"+end_date.month+"-"+end_date.day : "";
+   return this.reportsService.exportLeavesExcel(this.query);
+  }
+
+  downloadPDF(){
+    let {start_date, end_date} = this.query;
+    this.query.start_date = start_date ? start_date.year+"-"+start_date.month+"-"+start_date.day : "";
+    this.query.end_date = end_date ? end_date.year+"-"+end_date.month+"-"+end_date.day : "";
+    return this.reportsService.exportLeavesPDF(this.query);
   }
 
 }

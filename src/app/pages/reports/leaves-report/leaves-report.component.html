@@ -21,8 +21,8 @@
                        <label for="">&nbsp;</label>
                        <div>
                        <button (click)="fetchLeaves()" class="btn btn-success mx-1">Generate Report</button>
-                       <button class="btn btn-success mx-1">Download in Excel</button>
-                       <button class="btn btn-success mx-1">Download in PDF</button>
+                       <button (click)="downloadExcel($event)" class="btn btn-success mx-1">Download in Excel</button>
+                       <button (click)="downloadPDF($event)" class="btn btn-success mx-1">Download in PDF</button>
                        </div>
                    </div>
                 </div>

@@ -15,8 +15,10 @@
             [events]="calendarEvents"
             (dateClick)="handleDateClick($event)"
             (select)="handleDateSelect($event)"
-            [eventBackgroundColor]="'green'"
+            [eventBackgroundColor]="'#940000'"
+            [eventBorderColor]="'#940000'"
             [eventTextColor]="'white'"
+            (eventRender)="onEventRender($event)"
           ></full-calendar>
         </div>
 </div>

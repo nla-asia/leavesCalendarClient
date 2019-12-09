@@ -28,6 +28,7 @@ export class NewLeaveTypeComponent implements OnInit {
     this.settingsService.addleaveType(this.leaveType).subscribe(
       (res:any)=>{
       this.activeModal.close();
+      window.location.reload();
       },
       (err:any)=>{
         console.log(err);
